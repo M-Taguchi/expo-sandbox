@@ -18,7 +18,11 @@ const Header = ({ route, options, navigation }: any) => {
   return (
     <>
       <Appbar.Header>
-        <Appbar.BackAction onPress={() => navigation.openDrawer()} />
+        <Appbar.Action
+          icon="menu"
+          color="white"
+          onPress={() => navigation.openDrawer()}
+        />
         <Appbar.Content title={title} />
         {/* 三点リーダの中身 */}
         <Menu
@@ -27,6 +31,7 @@ const Header = ({ route, options, navigation }: any) => {
           anchor={
             <Appbar.Action
               icon="dots-vertical"
+              color="white"
               onPress={() => setOpenMore(!openMore)}
             />
           }
