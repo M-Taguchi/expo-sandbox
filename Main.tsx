@@ -7,6 +7,9 @@ const Drawer = createDrawerNavigator();
 export const Main = () => {
   return (
     <Drawer.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
       drawerContent={(props: any) => <DrawerContent {...props} />}
     >
       {/* <AppBar /> */}
