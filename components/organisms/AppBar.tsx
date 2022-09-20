@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Appbar, Drawer, Menu } from "react-native-paper";
 import { createStackNavigator } from "@react-navigation/stack";
+import { SearchScreen } from "../screen/SearchScreen";
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,7 @@ const Header = ({ route, options, navigation }: any) => {
 
   return (
     <>
-      <Appbar.Header>
+      <Appbar.Header style={{ marginTop: 0 }}>
         <Appbar.Action
           icon="menu"
           color="white"
@@ -56,11 +57,7 @@ export const AppBar: React.FC = () => {
     >
       <Stack.Screen
         name="Search"
-        children={() => (
-          <View>
-            <Text>Feed</Text>
-          </View>
-        )}
+        children={() => <SearchScreen />}
         options={{ headerTitle: "Search" }}
       />
     </Stack.Navigator>
