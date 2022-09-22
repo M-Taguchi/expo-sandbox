@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-import { Appbar, Menu } from "react-native-paper";
+import { Appbar, Menu, Snackbar } from "react-native-paper";
 import { createStackNavigator } from "@react-navigation/stack";
 import { SearchScreen } from "../screen/SearchScreen";
 import { PageListScreen } from "../screen/PageListScreen";
 import { RootStackParamList } from "../../type/routing.type";
+import { useSnackBar } from "../../hooks/useSnackBar";
 
 type AppBarProps = {
   savePage: () => void;
@@ -46,10 +47,10 @@ const Header = ({ route, options, navigation, savePage }: any) => {
           <Menu.Item
             onPress={() => {
               savePage();
+              setOpenMore(false);
             }}
             title="ページを保存"
           />
-          <Menu.Item onPress={() => {}} title="Item 2" />
         </Menu>
       </Appbar.Header>
     </>
