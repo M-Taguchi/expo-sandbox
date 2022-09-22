@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { DrawerContent } from "./components/organisms/DrawerContent";
+import { DrawerContent } from "../components/organisms/DrawerContent";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "@react-navigation/native";
-import { AppBarContainer } from "./components/organisms/container/AppBarContainer";
-import { useSnackBar } from "./hooks/useSnackBar";
+import { useSnackBar } from "../hooks/useSnackBar";
+import { Root } from "./Root";
 const Drawer = createDrawerNavigator();
 
 export const Main = () => {
@@ -18,7 +18,7 @@ export const Main = () => {
         }}
         drawerContent={(props: any) => <DrawerContent {...props} />}
       >
-        <Drawer.Screen name="Home" component={AppBarContainer} />
+        <Drawer.Screen name="Home" component={Root} />
       </Drawer.Navigator>
       {render()}
     </SafeAreaView>

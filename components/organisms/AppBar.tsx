@@ -1,19 +1,7 @@
-import React, { useState } from "react";
-import { StyleSheet } from "react-native";
-import { Appbar, Menu, Snackbar } from "react-native-paper";
-import { createStackNavigator } from "@react-navigation/stack";
-import { SearchScreen } from "../screen/SearchScreen";
-import { PageListScreen } from "../screen/PageListScreen";
-import { RootStackParamList } from "../../type/routing.type";
-import { useSnackBar } from "../../hooks/useSnackBar";
+import { useState } from "react";
+import { Appbar, Menu } from "react-native-paper";
 
-type AppBarProps = {
-  savePage: () => void;
-};
-
-const Stack = createStackNavigator<RootStackParamList>();
-
-const Header = ({ route, options, navigation, savePage }: any) => {
+export const AppBar = ({ route, options, navigation, savePage }: any) => {
   const title =
     options.headerTitle !== undefined
       ? options.headerTitle
@@ -56,34 +44,3 @@ const Header = ({ route, options, navigation, savePage }: any) => {
     </>
   );
 };
-
-export const AppBar: React.FC<AppBarProps> = ({ savePage }) => {
-  return (
-    <Stack.Navigator
-      initialRouteName="Search"
-      screenOptions={{
-        header: ({ route, options, navigation }) => (
-          <Header
-            route={route}
-            options={options}
-            navigation={navigation}
-            savePage={savePage}
-          />
-        ),
-      }}
-    >
-      <Stack.Screen
-        name="Search"
-        children={() => <SearchScreen />}
-        options={{ headerTitle: "Search" }}
-      />
-      <Stack.Screen
-        name="PageList"
-        children={() => <PageListScreen />}
-        options={{ headerTitle: "PageList" }}
-      />
-    </Stack.Navigator>
-  );
-};
-
-const styles = StyleSheet.create({});
