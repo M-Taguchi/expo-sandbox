@@ -4,12 +4,13 @@ import { Appbar, Menu } from "react-native-paper";
 import { createStackNavigator } from "@react-navigation/stack";
 import { SearchScreen } from "../screen/SearchScreen";
 import { PageListScreen } from "../screen/PageListScreen";
+import { RootStackParamList } from "../../type/routing.type";
 
 type AppBarProps = {
   savePage: () => void;
 };
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 const Header = ({ route, options, navigation, savePage }: any) => {
   const title =

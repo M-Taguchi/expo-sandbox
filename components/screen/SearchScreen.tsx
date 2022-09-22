@@ -13,10 +13,10 @@ export const SearchScreen = () => {
     <>
       <WebView
         source={{ uri: "https://www.google.com/" }}
-        onNavigationStateChange={(state) => {
+        onLoadProgress={(e) => {
           setPageInfo({
-            url: state.url,
-            title: state.title,
+            url: e.nativeEvent.url,
+            title: e.nativeEvent.title,
           });
         }}
       />
