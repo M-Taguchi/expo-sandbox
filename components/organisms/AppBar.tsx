@@ -1,12 +1,17 @@
-import React, { useRef, useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { Appbar, Drawer, Menu } from "react-native-paper";
+import React, { useState } from "react";
+import { StyleSheet } from "react-native";
+import { Appbar, Menu } from "react-native-paper";
 import { createStackNavigator } from "@react-navigation/stack";
 import { SearchScreen } from "../screen/SearchScreen";
+import { PageListScreen } from "../screen/PageListScreen";
+
+type AppBarProps = {
+  savePage: () => void;
+};
 
 const Stack = createStackNavigator();
 
-const Header = ({ route, options, navigation }: any) => {
+const Header = ({ route, options, navigation, savePage }: any) => {
   const title =
     options.headerTitle !== undefined
       ? options.headerTitle
@@ -37,7 +42,12 @@ const Header = ({ route, options, navigation }: any) => {
             />
           }
         >
-          <Menu.Item onPress={() => {}} title="Item 1" />
+          <Menu.Item
+            onPress={() => {
+              savePage();
+            }}
+            title="ページを保存"
+          />
           <Menu.Item onPress={() => {}} title="Item 2" />
         </Menu>
       </Appbar.Header>
@@ -45,13 +55,18 @@ const Header = ({ route, options, navigation }: any) => {
   );
 };
 
-export const AppBar: React.FC = () => {
+export const AppBar: React.FC<AppBarProps> = ({ savePage }) => {
   return (
     <Stack.Navigator
       initialRouteName="Search"
       screenOptions={{
         header: ({ route, options, navigation }) => (
-          <Header route={route} options={options} navigation={navigation} />
+          <Header
+            route={route}
+            options={options}
+            navigation={navigation}
+            savePage={savePage}
+          />
         ),
       }}
     >
@@ -59,6 +74,11 @@ export const AppBar: React.FC = () => {
         name="Search"
         children={() => <SearchScreen />}
         options={{ headerTitle: "Search" }}
+      />
+      <Stack.Screen
+        name="PageList"
+        children={() => <PageListScreen />}
+        options={{ headerTitle: "PageList" }}
       />
     </Stack.Navigator>
   );

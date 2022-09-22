@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { AppBar } from "./components/organisms/AppBar";
 import { DrawerContent } from "./components/organisms/DrawerContent";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "@react-navigation/native";
+import { AppBarContainer } from "./components/organisms/container/AppBarContainer";
 const Drawer = createDrawerNavigator();
 
 export const Main = () => {
@@ -16,7 +16,7 @@ export const Main = () => {
         }}
         drawerContent={(props: any) => <DrawerContent {...props} />}
       >
-        <Drawer.Screen name="Home" component={AppBar} />
+        <Drawer.Screen name="Home" component={AppBarContainer} />
       </Drawer.Navigator>
     </SafeAreaView>
   );
