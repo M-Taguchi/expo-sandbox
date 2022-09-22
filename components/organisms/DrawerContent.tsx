@@ -12,8 +12,11 @@ export const DrawerContent = (props: any) => {
   //   return undefined;
   // });
   return (
-    <DrawerContentScrollView {...props}>
-      <Drawer.Section title="">
+    <DrawerContentScrollView
+      {...props}
+      contentContainerStyle={{ paddingTop: 0 }}
+    >
+      <Drawer.Section title="メニュー">
         <Drawer.Item
           label="検索"
           icon="search-web"

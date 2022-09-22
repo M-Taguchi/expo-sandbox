@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
+import { View, StyleSheet } from "react-native";
 import { Divider, IconButton, List, Text } from "react-native-paper";
 import { useAsyncStorage } from "../../hooks/useAsyncStorage";
 import { useOpenUrl } from "../../hooks/useOpenUrl";
@@ -32,8 +33,12 @@ export const PageListScreen: React.FC = () => {
       });
   }, [reload]);
 
-  return !pageInfoList || pageInfoList.length === 0 ? (
-    <Text>データがありません</Text>
+  return !pageInfoList ? (
+    <></>
+  ) : pageInfoList.length === 0 ? (
+    <View style={styles.noContent}>
+      <Text>データがありません</Text>
+    </View>
   ) : (
     <>
       {pageInfoList.map((pageInfo, index) => {
@@ -59,3 +64,12 @@ export const PageListScreen: React.FC = () => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  noContent: {
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
