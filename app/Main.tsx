@@ -30,7 +30,7 @@ const makeStyles = () => {
   return StyleSheet.create({
     safeAreaView: {
       flex: 1,
-      backgroundColor: colors.primary,
+      backgroundColor: "lightgrey",
     },
   });
 };

@@ -1,12 +1,16 @@
 import { useFocusEffect } from "@react-navigation/native";
-import { useEffect, useRef, useState } from "react";
-import { BackHandler, Platform } from "react-native";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { BackHandler, Platform, StyleSheet, View } from "react-native";
+import { Button, IconButton } from "react-native-paper";
 import WebView from "react-native-webview";
 import { useWebView } from "../../hooks/useWebView";
+
+const INITIAL_URL = "https://www.google.com/";
 
 export const SearchScreen = () => {
   const { setPageInfo } = useWebView();
   const [canGoBack, setCanGoBack] = useState(false);
+  const [refresh, setRefresh] = useState(0);
   const ref = useRef<WebView>(null);
 
   const onBack = () => {
@@ -27,13 +31,23 @@ export const SearchScreen = () => {
 
   return Platform.OS === "web" ? (
     <>
-      <iframe src="https://www.google.com/" width={"100%"} height={"100%"} />
+      <iframe src={INITIAL_URL} width={"100%"} height={"100%"} />
+      <View style={styles.homeButtonView}>
+        <IconButton
+          style={styles.homeButton}
+          icon="home"
+          onPress={() => {
+            setRefresh(refresh + 1);
+          }}
+        />
+      </View>
     </>
   ) : (
     <>
       <WebView
+        key={refresh}
         ref={ref}
-        source={{ uri: "https://www.google.com/" }}
+        source={{ uri: INITIAL_URL }}
         onLoadProgress={(e) => {
           setCanGoBack(e.nativeEvent.canGoBack);
           setPageInfo({
@@ -42,6 +56,25 @@ export const SearchScreen = () => {
           });
         }}
       />
+      <View style={styles.homeButtonView}>
+        <IconButton
+          style={styles.homeButton}
+          icon="home"
+          onPress={() => {
+            setRefresh(refresh + 1);
+          }}
+        />
+      </View>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  homeButton: {
+    alignSelf: "center",
+  },
+  homeButtonView: {
+    borderTopWidth: 2,
+    borderTopColor: "lightgrey",
+  },
+});
