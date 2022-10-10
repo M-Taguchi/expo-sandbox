@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { Divider, IconButton, List, Searchbar, Text } from "react-native-paper";
 import { Icon } from "react-native-paper/lib/typescript/components/Avatar/Avatar";
 import { useAsyncStorage } from "../../hooks/useAsyncStorage";
@@ -77,7 +78,7 @@ export const PageListScreen: React.FC = () => {
       <Text>データがありません</Text>
     </View>
   ) : (
-    <>
+    <ScrollView>
       <Searchbar
         style={{ margin: 8 }}
         value={inputValue}
@@ -105,7 +106,7 @@ export const PageListScreen: React.FC = () => {
         : pageInfoList.map((pageInfo, index) => {
             return renderList(pageInfo, index);
           })}
-    </>
+    </ScrollView>
   );
 };
 
