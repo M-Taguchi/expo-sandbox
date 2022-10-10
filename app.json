@@ -16,8 +16,6 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "com.test.easy_page_save",
-      "bundleNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
